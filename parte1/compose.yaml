@@ -42,6 +42,10 @@ services:
     build: app
     ports:
       - "8000:8000"
+    # La configuración (BD, token...) está en app/.env, que se crea desde .env.example al arrancar.
+    # Código montado para poder modificarlo sin reconstruir la imagen.
+    volumes:
+      - ./app:/app
     depends_on:
       db-init:
         condition: service_completed_successfully

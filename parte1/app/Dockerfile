@@ -17,3 +17,12 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 
 ## CONTINUAR AQUÍ
+COPY composer.json composer.lock ./
+RUN composer install --no-interaction --prefer-dist --no-scripts --no-autoloader
+
+COPY . .
+RUN composer dump-autoload --optimize \
+    && chmod +x docker/entrypoint.sh
+
+EXPOSE 8000
+ENTRYPOINT ["docker/entrypoint.sh"]
