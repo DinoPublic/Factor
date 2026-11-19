@@ -9,4 +9,4 @@ grep -q '^APP_KEY=base64:' .env || php artisan key:generate --force
 
 php artisan migrate --force
 
-exec php artisan serve --host=0.0.0.0 --port=8000
+exec php artisan serve --host=0.0.0.0 --port=8000 --no-reload
